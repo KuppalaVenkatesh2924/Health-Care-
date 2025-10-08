@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Records</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/script.js" defer></script>
+</head>
+<body onload="loadRecords()">
+  <header>
+    <h1>Your Health Records</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="appointment.html">Appointment</a>
+      <a href="checkup.html">Check-Up</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th><th>Email</th><th>Phone</th><th>Date</th><th>Time</th><th>Type</th>
+        </tr>
+      </thead>
+      <tbody id="records-table"></tbody>
+    </table>
+  </div>
+</body>
+</html>
