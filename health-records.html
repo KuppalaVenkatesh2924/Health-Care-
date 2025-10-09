@@ -1,13 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Health Records</title>
-  <link rel="stylesheet" href="css/style.css">
-  <script src="js/script.js" defer></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f7f9;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: #007acc;
+      color: white;
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      flex: 1;
+      max-width: 900px;
+      margin: 2rem auto;
+      background-color: white;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      text-align: left;
+      font-size: 1rem;
+    }
+
+    th {
+      background-color: #007acc;
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tbody tr:hover {
+      background-color: #e6f2ff;
+    }
+
+    @media (max-width: 600px) {
+      th, td {
+        font-size: 0.85rem;
+        padding: 8px 10px;
+      }
+    }
+  </style>
+
+  <script>
+    function loadRecords() {
+      const recordsTable = document.getElementById("records-table");
+      recordsTable.innerHTML = "";
+
+      const records = JSON.parse(localStorage.getItem("patients")) || [];
+
+      if (records.length === 0) {
+        const tr = document.createElement("tr");
+        const td = document.createElement("td");
+        td.colSpan = 6;
+        td.style.textAlign = "center";
+        td.textContent = "No records found.";
+        tr.appendChild(td);
+        recordsTable.appendChild(tr);
+        return;
+      }
+
+      records.forEach(record => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${record.name}</td>
+          <td>${record.email}</td>
+          <td>${record.phone}</td>
+          <td>${record.date}</td>
+          <td>${record.time}</td>
+          <td>${record.type}</td>
+        `;
+        recordsTable.appendChild(tr);
+      });
+    }
+
+    function savePatientRecord(patient) {
+      let patients = JSON.parse(localStorage.getItem("patients")) || [];
+      patients.push(patient);
+      localStorage.setItem("patients", JSON.stringify(patients));
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const patients = JSON.parse(localStorage.getItem("patients")) || [];
+      if (patients.length === 0) {
+        savePatientRecord({
+          name: "John Doe",
+          email: "john@example.com",
+          phone: "1234567890",
+          date: "2025-10-10",
+          time: "14:30",
+          type: "Appointment"
+        });
+      }
+      loadRecords();
+    });
+  </script>
 </head>
-<body onload="loadRecords()">
+
+<body>
   <header>
     <h1>Your Health Records</h1>
     <nav>
