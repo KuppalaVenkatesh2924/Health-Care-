@@ -1,12 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Caresync - Home</title>
-  <link rel="stylesheet" href="css/style.css">
+
+  <!-- ✅ Embedded CSS -->
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f7f9;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: #007acc;
+      color: white;
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+
+    header h1 {
+      margin-bottom: 0.5rem;
+    }
+
+    nav {
+      margin-top: 0.5rem;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      flex: 1;
+      max-width: 600px;
+      margin: 3rem auto;
+      background-color: #ffffff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 1rem;
+      color: #007acc;
+    }
+
+    p {
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+
+    button {
+      background-color: #007acc;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      margin: 0.5rem;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #005fa3;
+    }
+
+    footer {
+      background-color: #f0f0f0;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        margin: 2rem 1rem;
+        padding: 1.5rem;
+      }
+
+      button {
+        width: 100%;
+        margin: 0.5rem 0;
+      }
+    }
+  </style>
 </head>
+
 <body>
+  <!-- ✅ Header -->
   <header>
     <h1>Caresync</h1>
     <nav>
@@ -17,11 +119,25 @@
     </nav>
   </header>
 
+  <!-- ✅ Main Content -->
   <div class="container">
     <h2>Welcome to Caresync</h2>
     <p>Organize your health appointments, check-ups, and records easily.</p>
-    <button onclick="location.href='appointment.html'">Book Appointment</button>
-    <button onclick="location.href='checkup.html'">Schedule Check-Up</button>
+    <button onclick="navigateTo('appointment.html')">Book Appointment</button>
+    <button onclick="navigateTo('checkup.html')">Schedule Check-Up</button>
   </div>
+
+  <!-- ✅ Footer -->
+  <footer>
+    &copy; 2025 Caresync. All rights reserved.
+  </footer>
+
+  <!-- ✅ JavaScript -->
+  <script>
+    function navigateTo(page) {
+      // Optional: Add loading feedback or checks here
+      location.href = page;
+    }
+  </script>
 </body>
 </html>
